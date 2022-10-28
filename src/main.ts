@@ -34,5 +34,11 @@ function drawPath (path) {
 const paths = userSessions.map(user => user.path.map(point => scale(point.position.x, point.position.y)))
 
 paths.forEach(path => drawPath(path))
-venues.forEach(venue => drawCircle(...scale(venue.position.x, venue.position.y)))
+venues.forEach(venue => {
+  const scaled = scale(venue.position.x, venue.position.y)
+  drawCircle(...scaled)
+  ctx.font = '10px serif'
+  ctx.fillStyle = "white"
+  ctx.fillText(venue.name, scaled[0]+10, scaled[1])
+})
 
